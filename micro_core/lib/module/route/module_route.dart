@@ -8,23 +8,19 @@ class ModuleRoute<T> {
   String moduleName;
 
   ModuleRoute({required this.moduleName, String route = "", this.arguments})
-      : routeUri =
-            Uri(path: route.isNotEmpty ? '$moduleName/$route' : moduleName);
+      : routeUri = Uri(path: route.isNotEmpty ? '$moduleName/$route' : moduleName);
 
   factory ModuleRoute.fromRouteSettings(RouteSettings route) {
     if (route.name == null || route.name == "") {
-      throw ArgumentError(
-          'Cannot create a ModuleRoute for an empty route', 'route');
+      throw ArgumentError('Cannot create a ModuleRoute for an empty route', 'route');
     }
 
     var uri = Uri(path: route.name);
-    var routeModuleName =
-        uri.pathSegments.isNotEmpty ? uri.pathSegments.first : "";
+    var routeModuleName = uri.pathSegments.isNotEmpty ? uri.pathSegments.first : "";
 
     return ModuleRoute(
       moduleName: "/$routeModuleName",
-      route:
-          uri.pathSegments.isNotEmpty ? uri.pathSegments.skip(1).join('/') : "",
+      route: uri.pathSegments.isNotEmpty ? uri.pathSegments.skip(1).join('/') : "",
       arguments: route.arguments as T?,
     );
   }
@@ -33,9 +29,7 @@ class ModuleRoute<T> {
 
   @override
   bool operator ==(Object other) {
-    return other is ModuleRoute &&
-        other.routeUri == routeUri &&
-        other.moduleName == moduleName;
+    return other is ModuleRoute && other.routeUri == routeUri && other.moduleName == moduleName;
   }
 
   @override
