@@ -1,7 +1,6 @@
 import 'package:micro_core/module/module.dart';
-import 'package:micro_core/module/traits/routable_module.dart';
 
-abstract class BaseApp extends Module with RoutableModule {
+abstract class BaseApp {
   List<Module> get modules;
 
   String get initialRoute => modules.first.moduleName;
