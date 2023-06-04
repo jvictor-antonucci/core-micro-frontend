@@ -26,7 +26,8 @@ class Injector<T> {
   final _injection = <Type, Dependency<T>>{};
 
   /// [inject] adds the provided [dependency] to the [Injector].
-  void inject<S extends T>(Dependency<S> dependency) => _injection.addAll({S: dependency});
+  void inject<S extends T>(Dependency<S> dependency) =>
+      _injection.addAll({S: dependency});
 
   /// [resolve] retrieves the instance of the requested entry by type.
   /// Throws an ArgumentError if no instance is injected for the type.
@@ -43,8 +44,8 @@ class Injector<T> {
   /// type or null when not injected.
   S? resolveOrNull<S extends T>() => _injection[S]?.instance as S?;
 
-  /// [close] removes all dependencies from the injector.
-  void close() => _injection.clear();
+  /// [clear] removes all dependencies from the injector.
+  void clear() => _injection.clear();
 
   /// [items] returns all injected entries within the injector.
   List<T> get items => _injection.values.map((e) => e.instance).toList();
