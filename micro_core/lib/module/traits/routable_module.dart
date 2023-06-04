@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:micro_core/module/module.dart';
-import 'package:micro_core/module/module_injector.dart';
-import 'package:micro_core/module/route/module_route.dart';
+import 'package:micro_core/utils/base_app_util.dart';
 
 mixin RoutableModule on Module {
-  Widget? onGenerateEntryPoint(ModuleInjector injector, ModuleRoute route);
-  Route<T>? onGenerateRoute<T>(ModuleRoute route);
+  Map<String, WidgetBuilderArgs> get routes;
 }
