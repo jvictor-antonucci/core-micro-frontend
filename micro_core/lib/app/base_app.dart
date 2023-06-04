@@ -15,7 +15,11 @@ abstract class BaseApp {
     if (modules.isNotEmpty) {
       for (Module module in modules) {
         if (module is RoutableModule) {
-          routes.addAll(module.routes);
+          routes.addAll(
+            module.routes.map(
+              (key, value) => MapEntry('/${module.moduleName}$key', value),
+            ),
+          );
         }
       }
     }

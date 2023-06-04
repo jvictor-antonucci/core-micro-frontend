@@ -7,14 +7,10 @@ void main() {
   final TestModuleFailure testModuleFailure = TestModuleFailure();
 
   group('Module', () {
-    test(
-        'should answer with correct [moduleName] when requested from a well implemented module',
-        () {
+    test('should answer with correct [moduleName] when requested from a well implemented module', () {
       expect(testModuleSuccess.moduleName, 'test-module');
     });
-    test(
-        'should answer with UnimplementedError when requested [moduleName] to a bad implemented module',
-        () {
+    test('should answer with UnimplementedError when requested [moduleName] to a bad implemented module', () {
       expect(() => testModuleFailure.moduleName, throwsUnimplementedError);
     });
   });

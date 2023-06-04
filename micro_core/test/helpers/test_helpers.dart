@@ -17,7 +17,7 @@ class BaseModule extends Module with RoutableModule {
 
   @override
   Map<String, WidgetBuilderArgs> get routes => {
-        'route': (context, args) => Container(),
+        '/route': (context, args) => Container(),
       };
 }
 
