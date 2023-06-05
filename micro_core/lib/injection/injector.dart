@@ -15,6 +15,10 @@ class Dependency<T> {
     return _instance!;
   }
 
+  /// Returns [T] of the [Dependency] for binding dependencies
+  /// on BaseAppModule of modules that implements the trait [BindedModule]
+  Type get dependecyType => T;
+
   Dependency({required this.builder});
 
   factory Dependency.value(T value) => Dependency(builder: () => value);
@@ -26,7 +30,12 @@ class Injector<T> {
   final _injection = <Type, Dependency<T>>{};
 
   /// [inject] adds the provided [dependency] to the [Injector].
-  void inject<S extends T>(Dependency<S> dependency) => _injection.addAll({S: dependency});
+  void inject<S extends T>(Dependency<S> dependency) {
+    assert(!_injection.containsKey(dependency.dependecyType),
+        'There is already a builder for "${dependency.dependecyType}" injected');
+
+    _injection[dependency.dependecyType] = dependency;
+  }
 
   /// [resolve] retrieves the instance of the requested entry by type.
   /// Throws an ArgumentError if no instance is injected for the type.
