@@ -47,6 +47,8 @@ abstract class BaseApp {
     }
   }
 
+  /// Method to be used on the [MaterialApp] class property
+  /// [onGenerateRoutes].
   Route<dynamic>? generateRoute(RouteSettings settings) {
     var routerName = settings.name;
     var routerArgs = settings.arguments;
