@@ -1,17 +1,22 @@
+import 'package:micro_core/injection/repository_injector.dart';
+
+typedef DependencyBuilder<T> = T Function(RepositoryInjector i);
+
 /// {@template dependency}
 /// A dependency is injected as a part of the [Injector]
 /// and will be lazily loaded when it is requested.
 /// {@endtemplate}
 class Dependency<T> {
   /// Responsible for returning an instance of the provided type, 'T'.
-  final T Function() builder;
+  final DependencyBuilder<T> builder;
+  late RepositoryInjector? injectorHelper;
   T? _instance;
 
   /// Returns an instance of the provided type 'T'.
   /// It will either return an existing instance or
   /// build a new one if it does not exist.
   T get instance {
-    _instance ??= builder();
+    _instance ??= builder.call(injectorHelper ?? RepositoryInjector.instance);
     return _instance!;
   }
 
@@ -19,9 +24,9 @@ class Dependency<T> {
   /// on BaseAppModule of modules that implements the trait [BindedModule]
   Type get dependecyType => T;
 
-  Dependency({required this.builder});
+  Dependency({required this.builder, this.injectorHelper});
 
-  factory Dependency.value(T value) => Dependency(builder: () => value);
+  factory Dependency.value(T value) => Dependency(builder: (i) => value);
 }
 
 /// A container for [Dependencies] wich exposes APIs
