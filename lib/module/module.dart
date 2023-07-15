@@ -1,5 +1,5 @@
 abstract class Module {
   const Module();
 
-  String get moduleName => throw UnimplementedError();
+  String get moduleName;
 }

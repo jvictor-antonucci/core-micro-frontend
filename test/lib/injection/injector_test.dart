@@ -2,6 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_core/injection/injector.dart';
 import 'package:micro_core/injection/repository_injector.dart';
 
+import '../../helpers/test_helpers.dart';
+
 void main() {
   final Injector injector = Injector();
   final RepositoryInjector repositoryInjector = RepositoryInjector.instance;
@@ -31,7 +33,8 @@ void main() {
 
       RepositoryInjector.instance.inject<double>(Dependency.value(12.3));
 
-      injector.inject(Dependency<String>(builder: (i) => nestedItemToInject(i.resolve<double>())));
+      injector.inject(Dependency<String>(
+          builder: (i) => nestedItemToInject(i.resolve<double>())));
 
       expect(injector.resolve<String>(), 'nested number is 12.3');
     });
