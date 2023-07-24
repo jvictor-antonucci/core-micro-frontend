@@ -6,9 +6,7 @@ void main() {
   final TestModuleSuccess testModuleSuccess = TestModuleSuccess();
 
   group('Module', () {
-    test(
-        'should answer with correct [moduleName] when requested from a well implemented module',
-        () {
+    test('should answer with correct [moduleName] when requested from a well implemented module', () {
       expect(testModuleSuccess.moduleName, 'test-module');
     });
   });

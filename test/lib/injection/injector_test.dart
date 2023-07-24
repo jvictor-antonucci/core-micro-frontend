@@ -33,8 +33,7 @@ void main() {
 
       RepositoryInjector.instance.inject<double>(Dependency.value(12.3));
 
-      injector.inject(Dependency<String>(
-          builder: (i) => nestedItemToInject(i.resolve<double>())));
+      injector.inject(Dependency<String>(builder: (i) => nestedItemToInject(i.resolve<double>())));
 
       expect(injector.resolve<String>(), 'nested number is 12.3');
     });

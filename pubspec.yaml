@@ -1,6 +1,6 @@
 name: micro_core
 description: Flutter package to aid in the development of micro frontend projects.
-version: 0.0.1
+version: 0.0.4
 repository: https://github.com/jvictor-antonucci/core-micro-frontend
 publish_to: none
 
